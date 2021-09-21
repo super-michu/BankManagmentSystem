@@ -1,10 +1,12 @@
 package com.company;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     //Interface to use Bank Managment System with menu
     private JButton createAcc, withdraw, deposit, checkBalance, exit, info;
+    public JLabel infoLabel;
     //Constructor of GUI
     public GUI(){
         setMainPanel();
@@ -16,9 +18,10 @@ public class GUI extends JFrame {
         mainPanel.setPreferredSize(new Dimension(700,300));
         mainPanel.setMinimumSize(new Dimension(200,200));
         mainPanel.add(setSelectPanel(),BorderLayout.WEST);
-        mainPanel.add(setLabelPanel(),BorderLayout.CENTER);
+        mainPanel.add(setinfoPanel(),BorderLayout.CENTER);
         this.getContentPane().add(mainPanel);
         setFrame();
+        setLocationRelativeTo(null);
     }
     // Making a select panel with action buttons
     private JPanel setSelectPanel(){
@@ -39,17 +42,28 @@ public class GUI extends JFrame {
         selectPanel.add(exit);
         return selectPanel;
     }
-    // Making a panel to show informations
-    private JPanel setLabelPanel(){
-        JPanel labelPanel = new JPanel();
-        return  labelPanel;
+    // Add actionlistener's to buttons
+    public void setController(ActionListener c){
+        this.createAcc.addActionListener(c);
+        this.deposit.addActionListener(c);
+        this.withdraw.addActionListener(c);
+        this.checkBalance.addActionListener(c);
+        this.info.addActionListener(c);
+        this.exit.addActionListener(c);
+    }
+    // Making a panel for showing some informations
+    private JPanel setinfoPanel(){
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new GridBagLayout());
+        infoLabel = new JLabel("BANK NAME");
+        infoPanel.add(infoLabel);
+        infoPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        return infoPanel;
     }
     // Making a frame for Bank System
     private void setFrame(){
         setTitle("Welcome in the Bank Managment Sys.");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
         pack();
     }
 }

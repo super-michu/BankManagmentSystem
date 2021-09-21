@@ -3,10 +3,13 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	// Action to run an application, model MVC
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                GUI app = new GUI();
+                GUI gui = new GUI();
+                AppController app = new AppController(gui);
+                gui.setController(app);
+                gui.setVisible(true);
             }
         });
     }
