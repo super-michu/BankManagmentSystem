@@ -4,11 +4,11 @@ public class BankCustomer {
     //Elements of the class
     private String nickname;
     private String password;
-    private static int balance = 0;
-    private static int withdraw = 0;
-    private static int deposit = 0;
+    public static double balance = 0;
+    public static double withdraw = 0;
+    public static double deposit = 0;
     //Constructor of a customer
-    private BankCustomer(){
+    public BankCustomer(){
 
     }
 }
